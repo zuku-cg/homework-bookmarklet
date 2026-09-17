@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Clearer Homework for DPR",
+  "short_name": "Homework",
+  "version": "{{VERSION}}",
+  "description": "Shows your DPR homework as one clear list: what's late, what's due this week, and which evening you'll do it.",
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "action": {
+    "default_title": "Show my homework",
+    "default_icon": { "16": "icons/16.png", "32": "icons/32.png" }
+  },
+  "background": { "service_worker": "background.js" },
+  "permissions": ["activeTab", "scripting"]
+}
