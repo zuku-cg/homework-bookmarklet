@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A clearer homework list for DPR</title>
+<style>
+  :root{--ground:#F1F4F8;--paper:#fff;--ink:#18263B;--muted:#5B6879;--line:#D9E0EA;--hl:#F6D34A;--hl-ink:#3A2E00;color-scheme:light}
+  @media (prefers-color-scheme:dark){:root{--ground:#0F1622;--paper:#172131;--ink:#E6ECF5;--muted:#98A5B8;--line:#2A3649;--hl:#E9C63E;--hl-ink:#1E1800;color-scheme:dark}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px 16px 64px}
+  main{max-width:640px;margin:0 auto;display:grid;gap:22px}
+  h1{font-size:clamp(28px,7vw,38px);line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance}
+  h1 mark{background:linear-gradient(transparent 58%,var(--hl) 58%);color:inherit}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 8px}
+  p{margin:0}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:12px}
+  ol{margin:0;padding-left:22px;display:grid;gap:8px}
+  .bm{justify-self:start;display:inline-block;background:var(--hl);color:var(--hl-ink);font-weight:700;text-decoration:none;border-radius:12px;padding:12px 18px;cursor:grab;border:2px dashed var(--hl-ink)}
+  button{font:inherit;font-weight:700;background:var(--ink);color:var(--ground);border:0;border-radius:12px;padding:12px 18px;cursor:pointer;justify-self:start;min-height:44px}
+  .muted{color:var(--muted);font-size:15px}
+  ul{margin:0;padding-left:20px;display:grid;gap:6px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>A clearer <mark>homework</mark> list for DPR</h1>
+    <p class="muted" style="margin-top:10px">A bookmark that redraws your DPR homework as one simple list: what's late, what's due this week, and which evening you plan to do each piece.</p>
+  </header>
+
+  <section class="card">
+    <h2>On a computer</h2>
+    <ol>
+      <li>Show your bookmarks bar (Ctrl+Shift+B, or Cmd+Shift+B on a Mac).</li>
+      <li>Drag this button onto the bar: <a class="bm" href="{{HREF}}" onclick="alert('Drag me to your bookmarks bar. Then click me when you are on DPR.');return false">{{NAME}}</a></li>
+      <li>Log in to DPR as usual, then click the bookmark. Click it again to go back to normal DPR.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>On an iPad or phone</h2>
+    <ol>
+      <li>Tap <b>Copy the bookmark code</b> below.</li>
+      <li>Bookmark this page (Share, then Add Bookmark) and call it Homework.</li>
+      <li>Open your bookmarks, edit that bookmark, delete its address and paste the code in its place. Save.</li>
+      <li>Log in to DPR, then open your bookmarks and tap Homework.</li>
+    </ol>
+    <button type="button" id="copy">Copy the bookmark code</button>
+    <p class="muted" id="copied" hidden>Copied. Now follow steps 2 to 4.</p>
+  </section>
+
+  <section class="card">
+    <h2>What it does and doesn't do</h2>
+    <ul>
+      <li>It only works while you're logged in to DPR yourself. It never sees your password.</li>
+      <li>It sends nothing anywhere except to DPR. There is no server, no account and no tracking.</li>
+      <li>Ticking something off saves the tick on DPR, exactly like ticking it there. It never hands work in.</li>
+      <li>Your evening plans are saved only in your own browser.</li>
+      <li>It isn't made by DPR or your school. If DPR changes, it may stop working until it's updated.</li>
+    </ul>
+  </section>
+</main>
+<script>
+  document.getElementById("copy").onclick = async () => {
+    const code = document.querySelector(".bm").href;
+    try { await navigator.clipboard.writeText(code); }
+    catch { const t = document.createElement("textarea"); t.value = code; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+    document.getElementById("copied").hidden = false;
+  };
+</script>
+</body>
+</html>
